@@ -26,6 +26,6 @@ driver.find_element(By.XPATH, "//*[@id='ap_password']")
 driver.find_element(By.XPATH, "//*[@id='ap_password_check']")
 driver.find_element(By.XPATH, "//*[@id='continue']").click()
 
-sleep(3)
+sleep(10)
 
 driver.quit()
