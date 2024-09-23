@@ -1,6 +1,10 @@
+
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
+
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @given('Open target main page')
@@ -8,18 +12,26 @@ def open_main(context):
     context.driver.get('https://www.target.com/')
 
 
-@when('Search for a product {product_name}')
-def search_product(context, product_name):
-  context.driver.find_element(By.ID, 'search').send_keys(product_name)
-  context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
+@when('Search for a product {coffee}')
+def search_product(context, coffee):
+  wait = WebDriverWait(context.driver, 10)
+  search_box = wait.until(EC.presence_of_element_located((By.ID, 'search')))
+  search_box.send_keys(coffee)
 
-sleep(4)
+  search_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-test='@web/Search/SearchButton']")))
+  search_button.click()
 
 
-@then('Verify that correct search results shown for {product_name}')
-def verify_results(context, product_name):
+  #context.driver.find_element(By.ID, 'search').send_keys(coffee)
+  #context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
+#sleep(4)
+
+
+
+@then('Verify that correct search results shown for {coffee}')
+def verify_results(context, coffee):
   actual_result = context.driver.find_element(By.XPATH, "//div[@data-test='resultsHeading']").text
-  expected_result = product_name
+  expected_result = coffee
   assert expected_result in actual_result, f'Expected {expected_result}, got actual {actual_result}'
 
-sleep(4)
+#sleep(4)
