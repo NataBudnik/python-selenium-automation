@@ -28,8 +28,7 @@ sleep(3)
 
 @then('Verify that correct search results shown for {product}')
 def verify_results(context, product):
-
- context.app.search_results_page.verify_results(product)
+    context.app.search_results_page.verify_results(product)
 
 @then('Verify that every product has a name and an image')
 def verify_products_name_img(context):

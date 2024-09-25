@@ -7,10 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-@given('Open target main page')
-def open_main(context):
-    context.driver.get('https://www.target.com/')
-
 
 @when('Search for a product {coffee}')
 def search_product(context, coffee):
@@ -28,7 +24,7 @@ def search_product(context, coffee):
 
 
 
-@then('Verify that correct search results shown for {coffee}')
+@then('Verify correct search results shown for {coffee}')
 def verify_results(context, coffee):
   actual_result = context.driver.find_element(By.XPATH, "//div[@data-test='resultsHeading']").text
   expected_result = coffee

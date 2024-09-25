@@ -11,8 +11,8 @@ SELECTED_COLOR = (By.CSS_SELECTOR, "[data-test='@web/VariationComponent'] div")
 @given('Open target product {product_id} page')
 def open_target(context, product_id):
     #context.driver.get(f'https://www.target.com/p/{product_id}')
- context.driver.get(f'https://www.target.com/p/journee-collection-womens-genevive-tru-comfort-foam-ankle-strap-flat-sandals/-/A-88457542?preselect=88457672#lnk=sametab{product_id}')
-sleep(3)
+    context.driver.get(f'https://www.target.com/p/journee-collection-womens-genevive-tru-comfort-foam-ankle-strap-flat-sandals/-/A-88457542?preselect=88457672#lnk=sametab{product_id}')
+    sleep(3)
 
 
 @then('Verify user can click through colors')
