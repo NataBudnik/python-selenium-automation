@@ -4,9 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from app.application import Application
 
 def browser_init(context):
-    """
-    :param context: Behave context
-    """
+
     driver_path = ChromeDriverManager().install()
     service = Service(driver_path)
     context.driver = webdriver.Chrome(service=service)
