@@ -8,3 +8,7 @@ class SearchResultsPage(Page):
     def verify_results(self, product):
         actual_result = self.driver.find_element(*self.SEARCH_RESULTS_HEADER).text
         assert product in actual_result, f'Expected {product}, got actual {actual_result}'
+
+
+def verify_results_url(self, product):
+    pass

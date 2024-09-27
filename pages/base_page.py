@@ -17,4 +17,11 @@ class Page:
 
     def input_text(self, text, *locator):
         self.driver.find_element(*locator).send_keys(text)
- 
+
+    def verify_url(self, expected_url):
+     current_url = self.driver.current_url
+     assert current_url == expected_url, f'Expected URL{expected_url} but got {current_url}'
+
+    def verify_partial_url(self, expected_partial_url):
+     current_url = self.driver.current_url
+     assert expected_partial_url in current_url,  f'Expected partial URL{expected_partial_url} not in {current_url}'
