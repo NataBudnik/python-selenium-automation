@@ -1,4 +1,3 @@
-# Created by smypboss at 9/16/24
 
 Feature: "target.com" Sign in Functionality
   Scenario: Verify that logged out user can navigate to Sign in
