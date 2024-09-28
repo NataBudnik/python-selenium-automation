@@ -1,3 +1,4 @@
+from pages.adding_to_cart_page import AddingToCartPage
 from pages.base_page import Page
 from pages.header import Header
 from pages.main_page import MainPage
@@ -16,3 +17,5 @@ class Application:
         self.cart_page = CartPage(driver)
 
         self.sign_in_page = SignInPage(driver)
+
+        self.adding_to_cart_page = AddingToCartPage(driver)

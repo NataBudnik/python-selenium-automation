@@ -23,6 +23,7 @@ def verify_header_links(context, expected_amount):
     expected_amount = int(expected_amount) # '6' => 6
     links = context.driver.find_elements(By.CSS_SELECTOR, "[data-test*='@web/GlobalHeader/UtilityHeader/']")
     assert len(links) == expected_amount, f'Expected {expected_amount} links but got {len(links)}'
+
 @then('Verify header is shown')
 def verify_header(context):
     context.driver.find_element(By.CSS_SELECTOR, "[class*='styles_utilityHeaderContainer']")
