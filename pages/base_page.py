@@ -1,4 +1,3 @@
-
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -21,7 +20,30 @@ class Page:
         self.driver.find_element(*locator).click()
 
     def input_text(self, text, *locator):
-        self.driver.find_element(*locator).send_keys(text)
+     self.driver.find_element(*locator).send_keys(text)
+
+
+
+
+    def get_current_window(self):
+        return self.driver.current_window_handle
+
+
+    def switch_to_new_window(self):
+        self.wait.until(EC.new_window_is_opened)
+        all_windows = self.driver.window_handles
+        print(f'Switching to window {all_windows[1]}')
+        self.driver.switch_to.window(all_windows[1])
+
+
+    def switch_to_window_by_id(self, window_id):
+        print(f'Switching to window {window_id}')
+        self.driver.switch_to.window(window_id)
+
+
+    def close(self):
+        self.driver.close()
+
 
 
 
@@ -31,13 +53,13 @@ class Page:
 
 
     def wait_to_be_clickable_click(self, *locator):
-     self.wait.until(EC.element_to_be_clickable(locator), message=f'Element by {locator} is not clickable').click()
+         self.wait.until(EC.element_to_be_clickable(locator), message=f'Element by {locator} is not clickable').click()
 
 
     def verify_url(self, expected_url):
-     current_url = self.driver.current_url
-     assert current_url == expected_url, f'Expected URL{expected_url} but got {current_url}'
+         current_url = self.driver.current_url
+         assert current_url == expected_url, f'Expected URL{expected_url} but got {current_url}'
 
     def verify_partial_url(self, expected_partial_url):
-     current_url = self.driver.current_url
-     assert expected_partial_url in current_url,  f'Expected partial URL{expected_partial_url} not in {current_url}'
+         current_url = self.driver.current_url
+         assert expected_partial_url in current_url,  f'Expected partial URL{expected_partial_url} not in {current_url}'
