@@ -19,8 +19,13 @@ class Page:
     def click(self, *locator):
         self.driver.find_element(*locator).click()
 
+    def get_text(self, *locator):
+        return self.driver.find_element(*locator).text
+
     def input_text(self, text, *locator):
      self.driver.find_element(*locator).send_keys(text)
+
+
 
 
 
@@ -54,6 +59,17 @@ class Page:
 
     def wait_to_be_clickable_click(self, *locator):
          self.wait.until(EC.element_to_be_clickable(locator), message=f'Element by {locator} is not clickable').click()
+
+    def wait_for_element_to_appear(self, *locator):
+        self.wait.until(
+            EC.visibility_of_element_located(locator),
+            message=f'Element by {locator} did not appear'
+        )
+    def wait_for_element_to_disappear(self, *locator):
+        self.wait.until(
+            EC.invisibility_of_element_located(locator),
+            message=f'Element by {locator} still shown on the page'
+        )
 
 
     def verify_url(self, expected_url):
