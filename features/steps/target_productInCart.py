@@ -8,10 +8,10 @@ def open_page(context):
  sleep(3)
 
 
-@when('Search a product {juice}')
-def searchProduct(context, juice):
+@when('Search a product {product}')
+def searchProduct(context, product):
  search_box = context.driver.find_element(By.ID, 'search')
- search_box.send_keys(juice)
+ search_box.send_keys(product)
  context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
 sleep(4)
 
@@ -20,10 +20,23 @@ def select_first_product(context):
  context.driver.find_element(By.XPATH, "//div[@data-test='product-grid']//a").click()
 sleep(4)
 
+
+
+@when('Hover favorite icon')
+def hover_favorites(context):
+    context.app.search_results_page.hover_favorites()
+
+@then('Favorites tooltip is shown')
+def verify_favorites(context):
+    context.app.search_results_page.hover_favorites()
+
+
+
+
 @when('Add product to the cart')
 def add_product_to_cart(context):
- context.driver.find_element(By.XPATH, "//button[contains(text(), 'Add to cart')]").click()
-
+ #context.driver.find_element(By.XPATH, "//button[contains(text(), 'Add to cart')]").click()
+ context.driver.find_element(By.CSS_SELECTOR, "[id*='addToCartButton']").click()
 sleep(3)
 
 @then('Verify that product is in the cart')
